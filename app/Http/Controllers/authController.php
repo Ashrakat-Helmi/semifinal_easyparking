@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Hamcrest\Type\IsNumeric;
+
 
 class authController extends Controller
 {
@@ -84,7 +89,9 @@ class authController extends Controller
 
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
+        
         return [
+            'status'=>'success',
             "message"=>"logged out"
         ];
     }
